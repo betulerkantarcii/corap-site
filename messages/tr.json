@@ -127,7 +127,7 @@
     "factOf": "{total} bilgiden {n}.",
     "prevFact": "Önceki bilgi",
     "nextFact": "Sonraki bilgi",
-    "galleryTitle": "Fotoğraf galerisi",
+    "galleryTitle": "Fotoğraflar ve videolar",
     "galleryOpen": "Büyük aç",
     "close": "Kapat",
     "photo": "Fotoğraf",
@@ -135,7 +135,9 @@
     "dayTitle": "Bir günü",
     "sample": "Örnek metin — değiştirilecek",
     "ctaTitle": "Evinde biraz Çorap ister misin?",
-    "ctaButton": "Koleksiyonuna göz at"
+    "ctaButton": "Koleksiyonuna göz at",
+    "video": "Video",
+    "animation": "Animasyon"
   },
   "NotFound": {
     "title": "Bu sayfayı Çorap çaldı",

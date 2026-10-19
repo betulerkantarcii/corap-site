@@ -127,7 +127,7 @@
     "factOf": "Fact {n} of {total}",
     "prevFact": "Previous fact",
     "nextFact": "Next fact",
-    "galleryTitle": "Photo gallery",
+    "galleryTitle": "Photos & videos",
     "galleryOpen": "Open larger",
     "close": "Close",
     "photo": "Photo",
@@ -135,7 +135,9 @@
     "dayTitle": "A day in the life",
     "sample": "Sample text — to be replaced",
     "ctaTitle": "Want a little Çorap at home?",
-    "ctaButton": "Shop her collection"
+    "ctaButton": "Shop her collection",
+    "video": "Video",
+    "animation": "Animation"
   },
   "NotFound": {
     "title": "Çorap stole this page",

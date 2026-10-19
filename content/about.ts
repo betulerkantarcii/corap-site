@@ -37,6 +37,10 @@ export const funFacts: L[] = [
     tr: "Pati yastıkları yumuşacık pembe. Evet, hepsi.",
   },
   {
+    en: "She's madly in love with hair ties. Playing with one is her favourite thing in the world.",
+    tr: "Çorap tam bir lastik aşığı. Saç lastiğiyle oynamaya bayılır.",
+  },
+  {
     en: "She has the classic tabby “M” on her forehead and a white blaze right down the middle.",
     tr: "Alnında klasik tekir “M” işareti, tam ortasında da beyaz bir şerit var.",
   },
@@ -48,14 +52,40 @@ export const funFacts: L[] = [
 ];
 
 export type GalleryItem = {
+  /** Image, or the poster frame for a video. */
   src: string;
+  /** Optional MP4 in /public/video — plays silently on a loop in the gallery. */
+  video?: string;
   width: number;
   height: number;
   alt: L;
-  kind: "photo" | "illustration";
+  /** "animation" = AI-generated or drawn moving picture, labelled as such. */
+  kind: "photo" | "video" | "illustration" | "animation";
 };
 
 export const gallery: GalleryItem[] = [
+  {
+    src: "/video/corap-hair-tie-poster.jpg",
+    video: "/video/corap-hair-tie.mp4",
+    width: 720,
+    height: 1280,
+    kind: "video",
+    alt: {
+      en: "Video: Çorap batting at a hair tie on the wooden floor",
+      tr: "Video: Çorap ahşap zeminde bir saç lastiğiyle oynuyor",
+    },
+  },
+  {
+    src: "/video/corap-coffee-poster.jpg",
+    video: "/video/corap-coffee.mp4",
+    width: 480,
+    height: 854,
+    kind: "animation",
+    alt: {
+      en: "Animation: Çorap behind a café counter, holding up a latte with heart foam art",
+      tr: "Animasyon: Kafe tezgâhının arkasında kalpli köpüklü bir latteyi tutan Çorap",
+    },
+  },
   {
     src: "/corap/photo-window-socks.jpg",
     width: 1200,
@@ -117,31 +147,11 @@ export const gallery: GalleryItem[] = [
     },
   },
   {
-    src: "/corap/photo-music-sheet-close.jpg",
-    width: 1178,
-    height: 976,
-    kind: "photo",
-    alt: {
-      en: "Photo of Çorap looking to the side in front of sheet music, showing her tabby M, white blaze and green eyes",
-      tr: "Nota kâğıtlarının önünde yana bakan Çorap'ın fotoğrafı; tekir M işareti, beyaz şeridi ve yeşil gözleri görünüyor",
-    },
-  },
-  {
     src: "/corap/photo-portrait.jpg",
     width: 1400,
     height: 781,
     kind: "photo",
     alt: { en: "Close-up photo of Çorap's face", tr: "Çorap'ın yüzünün yakın çekim fotoğrafı" },
-  },
-  {
-    src: "/art/corap-sock-paws.png",
-    width: 1493,
-    height: 2000,
-    kind: "illustration",
-    alt: {
-      en: "Watercolor of Çorap's front legs: tabby fur ending in a sharp line above white paws with pink toe beans",
-      tr: "Çorap'ın ön bacaklarının suluboya çizimi: tekir tüyler keskin bir çizgiyle bitiyor, altında pembe patili beyaz ayaklar",
-    },
   },
   {
     src: "/corap/illustration-sitting-socks.jpg",
