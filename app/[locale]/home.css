@@ -1,0 +1,292 @@
+/* Home-page-only styles: loader, scroll story, sock drawer. */
+
+/* ================= Loader ================= */
+.corap-loader {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  display: grid;
+  place-content: center;
+  justify-items: center;
+  gap: 1.5rem;
+  animation: loader-out 0.3s ease-in 1.1s forwards;
+}
+:root[data-seen] .corap-loader,
+:root[data-calm] .corap-loader {
+  display: none;
+}
+@media (prefers-reduced-motion: reduce) {
+  .corap-loader {
+    display: none;
+  }
+}
+.loader-track {
+  position: relative;
+  width: min(80vw, 34rem);
+  height: 5rem;
+}
+.loader-print {
+  position: absolute;
+  left: calc(var(--i) * 15%);
+  top: var(--y);
+  width: 1.6rem;
+  height: 1.6rem;
+  color: var(--color-bean-pink);
+  rotate: 90deg;
+  opacity: 0;
+  animation: loader-print 0.9s ease-out forwards;
+  animation-delay: calc(0.08s + var(--i) * 0.13s);
+}
+.loader-walker {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  rotate: -90deg;
+  animation: loader-walk 0.95s cubic-bezier(0.45, 0, 0.55, 1) forwards;
+}
+.loader-word {
+  text-align: center;
+  line-height: 1.05;
+  opacity: 0;
+  animation: loader-word 0.35s var(--ease-squish) 0.7s forwards;
+}
+@keyframes loader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@keyframes loader-print {
+  0% {
+    opacity: 0;
+    scale: 0.4;
+  }
+  25% {
+    opacity: 1;
+    scale: 1;
+  }
+  100% {
+    opacity: 0.25;
+  }
+}
+@keyframes loader-walk {
+  from {
+    translate: -4rem 0;
+  }
+  to {
+    translate: calc(min(80vw, 34rem) - 1rem) 0;
+  }
+}
+@keyframes loader-word {
+  from {
+    opacity: 0;
+    translate: 0 0.75rem;
+  }
+  to {
+    opacity: 1;
+    translate: 0 0;
+  }
+}
+
+/* ================= Scroll story ================= */
+/* Static layout (default: no JS, reduced motion, calm mode) */
+.story-stage {
+  display: grid;
+  justify-items: center;
+  gap: 1.5rem;
+  padding: 4rem 1rem 5rem;
+  text-align: center;
+}
+.story-eyebrow {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.25em;
+  text-transform: uppercase;
+  color: var(--color-tabby-caramel);
+}
+.story-visual {
+  position: relative;
+  width: min(80vw, 28rem);
+}
+.story-cat {
+  display: none;
+}
+.story-art {
+  width: 100%;
+  height: auto;
+  mix-blend-mode: lighten;
+}
+.story-steps {
+  display: grid;
+  gap: 0.75rem;
+  max-width: 34rem;
+}
+.story-step {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 3.5vw, 1.75rem);
+  font-weight: 600;
+  line-height: 1.25;
+}
+.story-lesson {
+  max-width: 30rem;
+  border-radius: var(--radius-blob);
+  background: var(--color-sock-white);
+  padding: 1.5rem 1.75rem;
+  color: var(--color-tabby-spot);
+  box-shadow: 0 20px 50px -20px rgb(0 0 0 / 0.6);
+}
+
+/* Motion layout: tall section, sticky stage, layers stacked */
+.story[data-motion="on"] {
+  height: 380vh;
+}
+.story[data-motion="on"] .story-stage {
+  /* sticky makes a stacking context: it needs its own night backdrop for the art's lighten blend */
+  background: var(--color-night);
+  position: sticky;
+  top: 0;
+  height: 100dvh;
+  padding: 0;
+  overflow: hidden;
+  display: block;
+}
+.story[data-motion="on"] .story-eyebrow {
+  position: absolute;
+  top: 5.5rem;
+  left: 0;
+  right: 0;
+  z-index: 3;
+}
+.story[data-motion="on"] .story-visual {
+  /* centred without transform/translate: those would create a transparent
+     stacking context and break the art's lighten blend */
+  --w: min(80vw, 56vh, 32rem);
+  position: absolute;
+  inset: 0;
+  margin: auto;
+  width: var(--w);
+  height: calc(var(--w) * 2000 / 1493);
+}
+.story[data-motion="on"] .story-cat {
+  display: block;
+  position: absolute;
+  inset: 8% 0 0;
+  transform-origin: 50% 94%;
+  will-change: transform;
+}
+.story[data-motion="on"] .story-art {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: contain;
+  visibility: hidden;
+}
+.story[data-motion="on"] .story-steps {
+  position: absolute;
+  left: 50%;
+  bottom: 7vh;
+  translate: -50% 0;
+  width: min(90vw, 34rem);
+  display: block;
+  z-index: 3;
+}
+.story[data-motion="on"] .story-step {
+  position: absolute;
+  inset: auto 0 0;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--color-night) 80%, transparent);
+  padding: 0.75rem 1.25rem;
+  backdrop-filter: blur(6px);
+}
+.story[data-motion="on"] .story-step:not(.story-step-0),
+.story[data-motion="on"] .story-lesson {
+  visibility: hidden;
+}
+.story[data-motion="on"] .story-lesson {
+  position: absolute;
+  left: 50%;
+  top: 14vh;
+  translate: -50% 0;
+  width: min(90vw, 30rem);
+  z-index: 3;
+}
+
+/* ================= Sock drawer carousel ================= */
+.drawer-scroller {
+  scroll-snap-type: x mandatory;
+  scroll-padding-inline: 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--color-tabby-caramel) transparent;
+}
+.drawer-cell {
+  scroll-snap-align: start;
+  border-radius: calc(var(--radius-blob) + 0.5rem);
+  padding: 0.6rem 0.6rem 1.4rem;
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 18px,
+      rgb(46 31 21 / 0.08) 18px 20px,
+      transparent 20px 44px
+    ),
+    var(--color-tabby-brown);
+  box-shadow: inset 0 -6px 0 rgb(0 0 0 / 0.18);
+}
+.drawer-window {
+  position: relative;
+  overflow: hidden;
+  border-radius: var(--radius-blob);
+}
+.drawer-front {
+  position: absolute;
+  inset: 0;
+  z-index: 20;
+  display: grid;
+  place-items: center;
+  border-radius: var(--radius-blob);
+  background:
+    repeating-linear-gradient(
+      90deg,
+      transparent 0 26px,
+      rgb(46 31 21 / 0.1) 26px 28px,
+      transparent 28px 60px
+    ),
+    var(--color-tabby-caramel);
+  box-shadow: inset 0 0 0 4px rgb(46 31 21 / 0.25);
+  cursor: pointer;
+  transition: transform 0.75s cubic-bezier(0.65, 0, 0.35, 1);
+  transition-delay: var(--drawer-delay, 0ms);
+}
+.drawer-cell[data-open="true"] .drawer-front,
+.drawer-cell:focus-within .drawer-front {
+  transform: translateY(101%);
+  pointer-events: none;
+}
+.drawer-knob {
+  width: 2.4rem;
+  height: 2.4rem;
+  border-radius: 999px;
+  background: var(--color-bean-pink);
+  box-shadow:
+    inset 0 -4px 0 var(--color-bean-pink-deep),
+    0 4px 0 rgb(46 31 21 / 0.35);
+}
+.drawer-label {
+  border-radius: 0.5rem;
+  background: var(--color-sock-white);
+  padding: 0.35rem 1rem;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.9rem;
+  color: var(--color-tabby-spot);
+  box-shadow: inset 0 0 0 2px rgb(46 31 21 / 0.3);
+}
+@media (prefers-reduced-motion: reduce) {
+  .drawer-front {
+    display: none;
+  }
+}
+:root[data-calm] .drawer-front {
+  display: none;
+}

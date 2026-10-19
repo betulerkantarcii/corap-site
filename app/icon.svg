@@ -1,0 +1,21 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <!-- Favicon: the logo mark (two sock paws) on night. Paths = MARK_LEG in components/ui/Logo.tsx; hex = globals.css tokens. -->
+  <rect width="64" height="64" rx="14" fill="#120d0a"/>
+  <g transform="translate(3.5 3) scale(.92)">
+    <g id="leg" transform="translate(15 0)">
+      <path fill="#fbf7f2" d="M-12 4L-9 -1L-5 3L-1 -2L3 3L7 -1L12 4C11 14 9 22 9 30C9 38 14 44 14 52C14 59 9 62 0 62S-14 59 -14 52C-14 44 -9 38 -9 30C-9 22 -11 14 -12 4Z"/>
+      <path fill="#b98a5e" d="M-12 4L-9 -1L-5 3L-1 -2L3 3L7 -1L12 4C11 14 9 22 9 30V32L6 34L3 32L0 34L-3 32L-6 34L-9 32V30C-9 22 -11 14 -12 4Z"/>
+      <g fill="#2e1f15">
+        <ellipse cx="-4" cy="11" rx="3.4" ry="1.9" transform="rotate(-14 -4 11)"/>
+        <ellipse cx="4" cy="20" rx="3.2" ry="1.8" transform="rotate(12 4 20)"/>
+      </g>
+      <g fill="#f2b8b5">
+        <ellipse cx="-8.5" cy="59.4" rx="3.2" ry="1.6"/>
+        <ellipse cx="0" cy="60.4" rx="3.2" ry="1.6"/>
+        <ellipse cx="8.5" cy="59.4" rx="3.2" ry="1.6"/>
+      </g>
+      <path fill="none" stroke="#2e1f15" stroke-width="2" stroke-linecap="round" d="M-4.5 54V61M4.5 54V61"/>
+    </g>
+    <use href="#leg" x="28"/>
+  </g>
+</svg>

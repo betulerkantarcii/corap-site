@@ -1,0 +1,4 @@
+TITLE,DESCRIPTION,PRICE,CURRENCY_CODE,QUANTITY,TAGS,MATERIALS,IMAGE1,IMAGE2,IMAGE3,VARIATION 1 TYPE,VARIATION 1 NAME,VARIATION 1 VALUES,VARIATION 2 TYPE,VARIATION 2 NAME,VARIATION 2 VALUES,SKU
+SAMPLE Çorap Coffee Hoodie,"A sample listing.
+With a second line, and ""quotes"".",58.00,USD,12,"cat,coffee,hoodie",cotton,https://i.etsystatic.com/sample/il_fullxfull.1.jpg,https://i.etsystatic.com/sample/il_fullxfull.2.jpg,,Size,Size,"S,M,L,XL",Color,Color,"Black,Cream",SKU1
+SAMPLE Sticker — Şaşkın Kedi,Tiny sticker.,4.50,USD,0,"sticker,cat",vinyl,https://i.etsystatic.com/sample/il_fullxfull.3.jpg,,,,,,,,,SKU2

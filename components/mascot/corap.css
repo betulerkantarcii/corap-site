@@ -1,0 +1,227 @@
+/* Cartoon Çorap motion. Paint (colors) lives in app/globals.css as c-* classes. */
+
+.corap {
+  overflow: visible;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.corap
+  :is(
+    .corap-all,
+    .corap-head,
+    .corap-ear,
+    .corap-tail,
+    .corap-breathe,
+    .corap-wiggle,
+    .corap-leap,
+    .corap-zzz text
+  ) {
+  transform-box: fill-box;
+}
+
+/* Eyelids: base position comes from the mood (--lid) */
+.corap-lid {
+  transform: translateY(var(--lid, 0px));
+}
+
+/* ---------- idle loops (only when animated) ---------- */
+.corap[data-animated="true"] .corap-breathe {
+  transform-origin: 50% 100%;
+  animation: corap-breathe 4s ease-in-out infinite;
+}
+.corap[data-animated="true"] .corap-breathe-slow {
+  animation-duration: 5.5s;
+}
+.corap[data-animated="true"] .corap-head {
+  transform-origin: 50% 80%;
+  animation: corap-headbob 4s ease-in-out infinite;
+}
+.corap[data-animated="true"] .corap-ear {
+  transform-origin: 70% 100%;
+  animation: corap-twitch 6.2s ease-in-out infinite;
+}
+.corap[data-animated="true"] .corap-ear-r {
+  animation-duration: 7.9s;
+  animation-delay: -3s;
+}
+.corap[data-animated="true"] .corap-tail {
+  transform-origin: var(--tail-origin, 0% 100%);
+  animation: corap-swish 3.4s ease-in-out infinite;
+}
+.corap[data-animated="true"]:not([data-pose="sleep"]) .corap-lid {
+  animation: corap-blink 5.5s ease-in-out infinite;
+}
+.corap[data-animated="true"][data-pose="pounce"] .corap-wiggle {
+  transform-origin: 0% 100%;
+  animation: corap-wiggle 0.42s ease-in-out infinite alternate;
+}
+.corap[data-animated="true"][data-pose="pounce"] .corap-leap {
+  animation: corap-leap 4.5s cubic-bezier(0.3, 0, 0.3, 1) infinite;
+}
+.corap[data-animated="true"][data-pose="pounce"] .corap-tail {
+  animation-duration: 0.9s;
+}
+.corap[data-animated="true"] .corap-zzz text {
+  animation: corap-zzz 3s ease-in infinite;
+}
+.corap[data-animated="true"] .corap-zzz text:nth-child(2) {
+  animation-delay: 1s;
+}
+.corap[data-animated="true"] .corap-zzz text:nth-child(3) {
+  animation-delay: 2s;
+}
+
+.corap[data-animated="true"][data-knead="true"] .corap-paw {
+  transform-origin: 50% 0%;
+  animation: corap-knead 1.2s ease-in-out infinite;
+}
+.corap[data-animated="true"][data-knead="true"] .corap-paw-r {
+  animation-delay: -0.6s;
+}
+
+/* ---------- triggered states (work even when idle loops are off) ---------- */
+.corap[data-kiss="true"][data-pose] .corap-lid {
+  animation: corap-kiss 1.8s ease-in-out 1;
+}
+.corap[data-purr="true"] .corap-all {
+  animation: corap-purr 0.11s linear infinite;
+}
+
+.corap[data-paused="true"] * {
+  animation-play-state: paused !important;
+}
+
+/* Reduced motion + calm mode: show the resting pose, no loops. Eye tracking stays. */
+@media (prefers-reduced-motion: reduce) {
+  .corap * {
+    animation: none !important;
+  }
+}
+:root[data-calm] .corap * {
+  animation: none !important;
+}
+
+.corap-zzz {
+  font-family: var(--font-display);
+  font-weight: 600;
+}
+
+@keyframes corap-breathe {
+  50% {
+    transform: scale(1.01, 1.025);
+  }
+}
+@keyframes corap-headbob {
+  50% {
+    transform: translateY(-1.5px) rotate(-1deg);
+  }
+}
+@keyframes corap-twitch {
+  0%,
+  86%,
+  100% {
+    transform: rotate(0);
+  }
+  89% {
+    transform: rotate(-16deg);
+  }
+  92% {
+    transform: rotate(4deg);
+  }
+  95% {
+    transform: rotate(-9deg);
+  }
+  98% {
+    transform: rotate(0);
+  }
+}
+@keyframes corap-swish {
+  0%,
+  100% {
+    transform: rotate(-3deg);
+  }
+  50% {
+    transform: rotate(8deg);
+  }
+}
+@keyframes corap-blink {
+  0%,
+  93%,
+  100% {
+    transform: translateY(var(--lid, 0px));
+  }
+  96% {
+    transform: translateY(21px);
+  }
+}
+@keyframes corap-kiss {
+  0%,
+  100% {
+    transform: translateY(var(--lid, 0px));
+  }
+  35%,
+  62% {
+    transform: translateY(17px);
+  }
+}
+@keyframes corap-knead {
+  0%,
+  100% {
+    transform: translateY(0) scale(1, 1);
+  }
+  45% {
+    transform: translateY(3px) scale(1.06, 0.9);
+  }
+}
+@keyframes corap-wiggle {
+  from {
+    transform: rotate(-2.5deg);
+  }
+  to {
+    transform: rotate(2.5deg);
+  }
+}
+@keyframes corap-leap {
+  0%,
+  70%,
+  100% {
+    transform: translate(0, 0);
+  }
+  78% {
+    transform: translate(-16px, -14px);
+  }
+  86% {
+    transform: translate(-24px, 0);
+  }
+  94% {
+    transform: translate(0, 0);
+  }
+}
+@keyframes corap-zzz {
+  0% {
+    opacity: 0;
+    transform: translate(0, 4px);
+  }
+  25% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, -14px);
+  }
+}
+@keyframes corap-purr {
+  0%,
+  100% {
+    transform: translate(0, 0);
+  }
+  25% {
+    transform: translate(0.5px, -0.4px);
+  }
+  50% {
+    transform: translate(-0.4px, 0.3px);
+  }
+  75% {
+    transform: translate(0.3px, 0.4px);
+  }
+}
