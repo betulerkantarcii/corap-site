@@ -6,9 +6,10 @@ import { site } from "./site";
   /public/instagram/ or reuse one from /public), the post link (Share → Copy
   link on Instagram) and a short description for screen readers.
 
-  ⚠️ PLACEHOLDER: these use photos already on the site and all link to the
-  profile. Swap in real posts. Later this can be replaced by Instagram's
-  official embed/API without touching the strip's design.
+  These are real photos of Çorap. ⚠️ The links still point to the profile:
+  paste each post's own link into `url` once it's on Instagram. Later this
+  can be replaced by Instagram's official embed/API without touching the
+  strip's design.
 */
 
 export type InstaPost = {
@@ -21,55 +22,53 @@ export type InstaPost = {
   caption_tr?: string;
 };
 
-export const instagramIsPlaceholder = true;
-
 export const instagramPosts: InstaPost[] = [
   {
-    image: "/corap/photo-music-sheet-close.jpg",
+    image: "/corap/photo-window-socks.jpg",
     url: site.instagramUrl,
-    alt_en: "Çorap looking to the side in front of sheet music",
-    alt_tr: "Nota kâğıtlarının önünde yana bakan Çorap",
-    caption_en: "music critic",
-    caption_tr: "müzik eleştirmeni",
+    alt_en: "Çorap by the window, white sock paws on the radiator",
+    alt_tr: "Pencerenin önünde Çorap, beyaz çoraplı patileri kaloriferin üstünde",
+    caption_en: "sock check",
+    caption_tr: "çorap kontrolü",
   },
   {
-    image: "/art/corap-sock-paws.png",
+    image: "/corap/photo-sleeping.jpg",
     url: site.instagramUrl,
-    alt_en: "Watercolor of Çorap's white sock paws",
-    alt_tr: "Çorap'ın beyaz çoraplı patilerinin suluboya çizimi",
-    caption_en: "the socks",
-    caption_tr: "çoraplar",
+    alt_en: "Çorap asleep with one pink-beaned paw in front of her face",
+    alt_tr: "Pembe patisi yüzünün önünde, uyuyan Çorap",
+    caption_en: "nap o'clock",
+    caption_tr: "şekerleme saati",
   },
   {
-    image: "/corap/photo-portrait.jpg",
+    image: "/corap/photo-yawn.jpg",
     url: site.instagramUrl,
-    alt_en: "Close-up of Çorap's face",
-    alt_tr: "Çorap'ın yüzünün yakın çekimi",
-    caption_en: "unimpressed",
-    caption_tr: "etkilenmedi",
+    alt_en: "Çorap mid-yawn on the sofa",
+    alt_tr: "Kanepede esneyen Çorap",
+    caption_en: "big yawn",
+    caption_tr: "kocaman esneme",
   },
   {
-    image: "/products/caffeinated-art.png",
+    image: "/corap/photo-sunbeam.jpg",
     url: site.instagramUrl,
-    alt_en: "Illustration of Çorap holding a latte",
-    alt_tr: "Latte tutan Çorap çizimi",
-    caption_en: "first coffee",
-    caption_tr: "ilk kahve",
+    alt_en: "Çorap curled up in the sun",
+    alt_tr: "Güneşte kıvrılmış Çorap",
+    caption_en: "sunbathing",
+    caption_tr: "güneşleniyor",
   },
   {
-    image: "/products/house-cat-green-room.jpg",
+    image: "/corap/photo-sofa.jpg",
     url: site.instagramUrl,
-    alt_en: "Illustration of Çorap in a green reading room",
-    alt_tr: "Yeşil okuma odasında Çorap çizimi",
-    caption_en: "the office",
-    caption_tr: "ofis",
+    alt_en: "Çorap lying on the sofa, looking straight at the camera",
+    alt_tr: "Kanepede uzanmış, doğrudan kameraya bakan Çorap",
+    caption_en: "the look",
+    caption_tr: "o bakış",
   },
   {
-    image: "/corap/photo-music-sheet.jpg",
+    image: "/corap/photo-kitten-with-friend.jpg",
     url: site.instagramUrl,
-    alt_en: "Çorap sitting in front of a green wall",
-    alt_tr: "Yeşil duvarın önünde oturan Çorap",
-    caption_en: "posing",
-    caption_tr: "poz veriyor",
+    alt_en: "Çorap as a kitten on the sofa arm, an orange tabby cat beside her",
+    alt_tr: "Yavruyken koltuğun kolunda Çorap, yanında turuncu tekir bir kedi",
+    caption_en: "tiny Çorap",
+    caption_tr: "minik Çorap",
   },
 ];

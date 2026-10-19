@@ -154,7 +154,7 @@ scripts/             Etsy CSV import
 | All 8 products (titles, prices, variants, links) | `content/products.ts`                 | Samples built from the real designs; marked "Sample" on the site. Replaced by an Etsy import. |
 | Çorap's story (second paragraph)                 | `content/about.ts`                    | Marked "Sample text"                                                                          |
 | "A day in the life" schedule                     | `content/about.ts`                    | Playful sample, marked "Sample text"                                                          |
-| Instagram posts                                  | `content/instagram.ts`                | Use site photos and all link to the profile                                                   |
+| Instagram post links                             | `content/instagram.ts`                | Real photos of Çorap, but each links to the profile until you paste the post links            |
 | Customer reviews                                 | `content/reviews.ts`                  | Empty, so the section is hidden                                                               |
 | Game reward code                                 | `content/site.ts` → `gameReward.code` | Empty; share card shown instead                                                               |
 | Newsletter service                               | Vercel environment variables          | Stub (sends nothing)                                                                          |

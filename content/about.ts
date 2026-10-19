@@ -57,6 +57,66 @@ export type GalleryItem = {
 
 export const gallery: GalleryItem[] = [
   {
+    src: "/corap/photo-window-socks.jpg",
+    width: 1200,
+    height: 1600,
+    kind: "photo",
+    alt: {
+      en: "Çorap sitting by the window between white curtains, her white sock paws lined up on the radiator",
+      tr: "Beyaz perdelerin arasında pencerenin önünde oturan Çorap; beyaz çoraplı patileri kaloriferin üstünde yan yana",
+    },
+  },
+  {
+    src: "/corap/photo-sofa.jpg",
+    width: 1200,
+    height: 1600,
+    kind: "photo",
+    alt: {
+      en: "Çorap lying on the sofa looking into the camera, white chest and paws tucked in",
+      tr: "Kanepede uzanmış, kameraya bakan Çorap; beyaz göğsü ve patileri altına toplanmış",
+    },
+  },
+  {
+    src: "/corap/photo-sleeping.jpg",
+    width: 899,
+    height: 1599,
+    kind: "photo",
+    alt: {
+      en: "Close-up of Çorap asleep on the sofa, one white paw with pink toe beans in front of her face",
+      tr: "Kanepede uyuyan Çorap'ın yakın çekimi; yüzünün önünde pembe pati yastıklı beyaz bir patisi",
+    },
+  },
+  {
+    src: "/corap/photo-yawn.jpg",
+    width: 899,
+    height: 1599,
+    kind: "photo",
+    alt: {
+      en: "Çorap lying on her back on the sofa mid-yawn, mouth wide open",
+      tr: "Kanepede sırt üstü uzanmış, ağzı kocaman açık esneyen Çorap",
+    },
+  },
+  {
+    src: "/corap/photo-sunbeam.jpg",
+    width: 1600,
+    height: 1200,
+    kind: "photo",
+    alt: {
+      en: "Çorap curled up in a patch of sunlight against a pale green wall",
+      tr: "Açık yeşil duvarın önünde, güneş ışığında kıvrılmış Çorap",
+    },
+  },
+  {
+    src: "/corap/photo-kitten-with-friend.jpg",
+    width: 960,
+    height: 1280,
+    kind: "photo",
+    alt: {
+      en: "Çorap as a kitten sitting on the arm of a sofa, with an orange tabby cat sitting on the floor beside it",
+      tr: "Yavruyken koltuğun kolunda oturan Çorap; yanında yerde oturan turuncu tekir bir kedi",
+    },
+  },
+  {
     src: "/corap/photo-music-sheet-close.jpg",
     width: 1178,
     height: 976,
@@ -74,16 +134,6 @@ export const gallery: GalleryItem[] = [
     alt: { en: "Close-up photo of Çorap's face", tr: "Çorap'ın yüzünün yakın çekim fotoğrafı" },
   },
   {
-    src: "/corap/photo-music-sheet.jpg",
-    width: 1400,
-    height: 1156,
-    kind: "photo",
-    alt: {
-      en: "Photo of Çorap sitting in front of a green wall and sheet music",
-      tr: "Yeşil duvar ve nota kâğıtlarının önünde oturan Çorap'ın fotoğrafı",
-    },
-  },
-  {
     src: "/art/corap-sock-paws.png",
     width: 1493,
     height: 2000,
@@ -94,6 +144,16 @@ export const gallery: GalleryItem[] = [
     },
   },
   {
+    src: "/corap/illustration-sitting-socks.jpg",
+    width: 1086,
+    height: 1448,
+    kind: "illustration",
+    alt: {
+      en: "Detailed illustration of Çorap sitting and looking up, her white socks and striped tail on show",
+      tr: "Oturup yukarı bakan Çorap'ın detaylı çizimi; beyaz çorapları ve çizgili kuyruğu görünüyor",
+    },
+  },
+  {
     src: "/corap/illustration-face.jpg",
     width: 638,
     height: 578,
@@ -101,16 +161,6 @@ export const gallery: GalleryItem[] = [
     alt: {
       en: "Illustration of Çorap looking up with big green eyes",
       tr: "Kocaman yeşil gözlerle yukarı bakan Çorap çizimi",
-    },
-  },
-  {
-    src: "/products/corap-painted-sit.jpg",
-    width: 896,
-    height: 1200,
-    kind: "illustration",
-    alt: {
-      en: "Painted portrait of Çorap sitting, showing her white socks",
-      tr: "Beyaz çoraplarını gösteren, oturan Çorap'ın boyalı portresi",
     },
   },
 ];

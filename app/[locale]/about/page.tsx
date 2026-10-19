@@ -55,7 +55,7 @@ export default function AboutPage({ params }: Props) {
               className="relative z-10 w-3/4"
             />
             <Polaroid
-              src="/corap/photo-music-sheet-close.jpg"
+              src="/corap/photo-window-socks.jpg"
               alt=""
               caption={t("photoCaption")}
               tilt={6}
