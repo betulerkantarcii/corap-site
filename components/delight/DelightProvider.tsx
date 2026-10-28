@@ -1,6 +1,7 @@
 "use client";
 
 import { createContext, useCallback, useContext, useEffect, useState, type ReactNode } from "react";
+import { unlockAudio } from "@/lib/sound";
 
 /**
  * Visitor preferences for the playful layer, remembered in localStorage:
@@ -53,6 +54,19 @@ export function DelightProvider({ children }: { children: ReactNode }) {
     const root = document.documentElement;
     root.toggleAttribute("data-calm", prefs.calm);
   }, [prefs.calm]);
+
+  // Returning visitors with sound on: unlock audio on their first gesture,
+  // so purrs from stroking and game sounds (not gestures) can play later.
+  useEffect(() => {
+    if (!prefs.sound) return;
+    const events = ["pointerdown", "keydown", "touchend"] as const;
+    const unlock = () => {
+      unlockAudio();
+      events.forEach((e) => window.removeEventListener(e, unlock, true));
+    };
+    events.forEach((e) => window.addEventListener(e, unlock, { capture: true, passive: true }));
+    return () => events.forEach((e) => window.removeEventListener(e, unlock, true));
+  }, [prefs.sound]);
 
   const toggle = useCallback((key: keyof Prefs) => {
     setPrefs((p) => {

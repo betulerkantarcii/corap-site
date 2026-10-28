@@ -1,6 +1,7 @@
 "use client";
 
 import { useTranslations } from "next-intl";
+import { meow, unlockAudio } from "@/lib/sound";
 import { useDelight } from "./DelightProvider";
 
 type Key = "sound" | "calm" | "cursor";
@@ -24,7 +25,15 @@ export function PrefsControls({ compact = false }: { compact?: boolean }) {
             key={k}
             type="button"
             aria-pressed={on}
-            onClick={() => prefs.toggle(k)}
+            onClick={() => {
+              // Turning sound on: unlock audio inside this click (browsers
+              // require a gesture) and say hello so it's clear it works.
+              if (k === "sound" && !on) {
+                unlockAudio();
+                meow();
+              }
+              prefs.toggle(k);
+            }}
             title={`${t(k)} — ${t(`${k}Hint`)}`}
             className={
               compact
