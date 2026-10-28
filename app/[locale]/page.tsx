@@ -51,6 +51,8 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
       <div className="sock-line" aria-hidden="true" />
       <WhyCorap />
       <SectionTransition kind="trail" />
+      <PlaySection />
+      <SectionTransition kind="trail" />
       <section className="section-sock paper-grain">
         <div className="mx-auto max-w-7xl px-4 py-20 sm:px-6">
           <Reveal>
@@ -61,7 +63,6 @@ export default function HomePage({ params }: { params: Promise<{ locale: string 
       <SectionTransition kind="sock" />
       <ShopAll />
       <InstagramStrip />
-      <PlaySection />
       <Reviews />
       <Newsletter />
     </>
