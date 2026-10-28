@@ -7,7 +7,7 @@ import imported from "@/content/products.imported.json";
    without touching the UI.
    ------------------------------------------------------------------ */
 
-export const CATEGORIES = ["tshirt", "hoodie", "print", "sticker"] as const;
+export const CATEGORIES = ["sweatshirt", "hoodie", "tshirt", "print", "sticker"] as const;
 export type Category = (typeof CATEGORIES)[number];
 
 export type ProductImage = {
@@ -72,5 +72,6 @@ export function formatPrice(p: Pick<Product, "price" | "currency">, locale: stri
   return new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
     style: "currency",
     currency: p.currency,
+    currencyDisplay: "narrowSymbol", // ₺1,302.51 rather than TRY 1,302.51
   }).format(p.price);
 }

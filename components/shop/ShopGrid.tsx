@@ -5,20 +5,22 @@ import { useLocale, useTranslations } from "next-intl";
 import { useEffect, useMemo, useState } from "react";
 import { useDelight } from "@/components/delight/DelightProvider";
 import { PawPrint } from "@/components/ui/PawPrint";
+import { site } from "@/content/site";
 import { CATEGORIES, formatPrice, type Category, type Product } from "@/lib/catalog";
 import { EmptyState } from "./EmptyState";
 import { ProductCard } from "./ProductCard";
 
-const PRICE_BANDS = ["any", "under25", "25to50", "over50"] as const;
+const PRICE_BANDS = ["any", "low", "mid", "high"] as const;
 type PriceBand = (typeof PRICE_BANDS)[number];
 const SORTS = ["featured", "newest", "priceAsc", "priceDesc"] as const;
 type Sort = (typeof SORTS)[number];
 
+const [LOW, HIGH] = site.priceBands;
 const inBand = (p: Product, band: PriceBand) =>
   band === "any" ||
-  (band === "under25" && p.price < 25) ||
-  (band === "25to50" && p.price >= 25 && p.price <= 50) ||
-  (band === "over50" && p.price > 50);
+  (band === "low" && p.price < LOW) ||
+  (band === "mid" && p.price >= LOW && p.price <= HIGH) ||
+  (band === "high" && p.price > HIGH);
 
 const sorters: Record<Sort, (a: Product, b: Product) => number> = {
   featured: (a, b) =>
@@ -72,9 +74,9 @@ export function ShopGrid({ products }: { products: Product[] }) {
     formatPrice({ price: n, currency }, locale).replace(/[.,]00(?=\D*$)/, "");
   const bandLabel: Record<PriceBand, string> = {
     any: t("priceAny"),
-    under25: t("priceUnder", { amount: money(25) }),
-    "25to50": t("priceBetween", { from: money(25), to: money(50) }),
-    over50: t("priceOver", { amount: money(50) }),
+    low: t("priceUnder", { amount: money(LOW) }),
+    mid: t("priceBetween", { from: money(LOW), to: money(HIGH) }),
+    high: t("priceOver", { amount: money(HIGH) }),
   };
 
   const clear = () => {

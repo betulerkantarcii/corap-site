@@ -99,7 +99,8 @@ const slugify = (s) =>
 
 function guessCategory(text) {
   const t = text.toLowerCase();
-  if (/hoodie|sweatshirt|kapüşon|kapuson/.test(t)) return "hoodie";
+  if (/hoodie|kapüşon|kapuson/.test(t)) return "hoodie";
+  if (/sweatshirt|crewneck/.test(t)) return "sweatshirt";
   if (/t-?shirt|\btee\b|tişört|tisort|shirt/.test(t)) return "tshirt";
   if (/sticker|decal|çıkartma/.test(t)) return "sticker";
   return "print";

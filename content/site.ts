@@ -9,5 +9,7 @@ export const site = {
    * code to show it to players who reach `minScore`. While it's null, players
    * get a shareable score card instead.
    */
+  /** Shop price filter split points, in the products' currency (TL): "under 1,000", "1,000–2,000", "over 2,000". */
+  priceBands: [1000, 2000] as const,
   gameReward: { code: null as string | null, minScore: 15 },
 } as const;

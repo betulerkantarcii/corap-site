@@ -1,7 +1,7 @@
 import { ImageResponse } from "next/og";
 import { routing } from "@/i18n/routing";
 import { BRAND, MARK_DATA_URI, brandFonts, publicImageDataUri } from "@/lib/brand-art";
-import { formatPrice, getProduct, products, title } from "@/lib/catalog";
+import { getProduct, products, title, type Product } from "@/lib/catalog";
 
 export const alt = "Product from The House Cat · Çorap";
 export const size = { width: 1200, height: 630 };
@@ -57,11 +57,20 @@ export default async function ProductOpenGraphImage({
         </div>
         {product && (
           <div style={{ color: BRAND.pink, fontSize: 44, marginTop: 22 }}>
-            {formatPrice(product, locale)}
+            {ogPrice(product, locale)}
           </div>
         )}
       </div>
     </div>,
     { ...size, fonts: await brandFonts() },
   );
+}
+
+/** "1.302,51 TL" — the share-card font has no ₺ glyph, so lira is written as TL. */
+function ogPrice(p: Product, locale: "tr" | "en") {
+  const n = new Intl.NumberFormat(locale === "tr" ? "tr-TR" : "en-US", {
+    minimumFractionDigits: 2,
+    maximumFractionDigits: 2,
+  }).format(p.price);
+  return `${n} ${p.currency === "TRY" ? "TL" : p.currency}`;
 }

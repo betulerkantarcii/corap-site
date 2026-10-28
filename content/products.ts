@@ -1,243 +1,180 @@
 import type { Product } from "@/lib/catalog";
-import { site } from "./site";
 
 /*
-  ⚠️ PLACEHOLDER PRODUCTS — built from the shop's real designs, but the titles,
-  prices, variants and Etsy links are made up. Replace them by running
-  `npm run import:etsy -- <your-etsy-export.csv>` (see README), which writes
-  content/products.imported.json and takes over automatically.
+  The shop's products, matching the live Etsy listings
+  (https://www.etsy.com/shop/THEHOUSECATcorap), checked on 28 Oct 2026.
 
-  Until then each product links to the Etsy shop front.
+  Prices are what Etsy shows in Turkish lira; buyers outside Türkiye see Etsy's
+  own conversion at checkout. Photos come straight from each Etsy listing.
+
+  To change a product, edit it here. To bring in many listings at once, run
+  `npm run import:etsy -- <export.csv>` (see README): it writes
+  content/products.imported.json, which then replaces this list.
 */
 
-const S = (alt_en: string, alt_tr: string, src: string) => ({ src, alt_en, alt_tr });
+const ETSY = "https://www.etsy.com/listing";
+const IMG = "https://i.etsystatic.com/41098197/r/il";
 
-const SIZES_APPAREL = { name_tr: "Beden", name_en: "Size", options: ["S", "M", "L", "XL"] };
-const SIZES_PRINT = { name_tr: "Boyut", name_en: "Size", options: ["A4", "A3", "30×40 cm"] };
+const img = (path: string, alt_en: string, alt_tr: string) => ({
+  src: `${IMG}/${path}`,
+  alt_en,
+  alt_tr,
+});
 
 export const products: Product[] = [
   {
-    slug: "caffeinated-tee",
-    title_en: "Caffeinated Çorap Tee",
-    title_tr: "Kafeinli Çorap Tişört",
+    slug: "corap-sock-paws-sweatshirt",
+    title_en: "Çorap Sweatshirt — Sock Paws",
+    title_tr: "Çorap Sweatshirt — Çoraplı Patiler",
     description_en:
-      "A soft white tee with a tiny Çorap on the chest, guarding her latte. She did not share it.",
+      "A black crewneck sweatshirt with Çorap's two front paws in the middle: tabby fur on top, white socks below. The design that gave her her name.",
     description_tr:
-      "Göğsünde lattesini koruyan minik bir Çorap olan yumuşak beyaz tişört. Paylaşmadı tabii.",
-    price: 32,
-    currency: "USD",
+      "Ortasında Çorap'ın iki ön patisi olan siyah, bisiklet yaka sweatshirt: üstte tekir tüyler, altta beyaz çoraplar. Ona adını veren tasarım.",
+    price: 1302.51,
+    currency: "TRY",
+    category: "sweatshirt",
+    tags: ["sweatshirt", "crewneck", "paws", "cat"],
+    images: [
+      img(
+        "f14b75/8754865601/il_fullxfull.8754865601_t5g5.jpg",
+        "Black crewneck sweatshirt with a small centred print of two tabby cat legs with white sock paws",
+        "Ortasında beyaz çoraplı iki tekir kedi bacağı baskısı olan siyah bisiklet yaka sweatshirt",
+      ),
+      img(
+        "7b3690/8754875523/il_fullxfull.8754875523_7iz7.jpg",
+        "Photo of Çorap sitting on a radiator by the window, showing her white sock paws",
+        "Pencere kenarında kaloriferin üstünde oturan Çorap'ın fotoğrafı; beyaz çoraplı patileri görünüyor",
+      ),
+    ],
+    etsyUrl: `${ETSY}/4598970726/corap-sweatshirt-black-crewneck-with-cat`,
+    variants: [{ name_en: "Size", name_tr: "Beden", options: ["XS", "S", "M", "L", "XL"] }],
+    featured: true,
+    isNew: true,
+    soldOut: false,
+  },
+  {
+    slug: "coffee-cat-hoodie",
+    title_en: "Coffee Cat Hoodie",
+    title_tr: "Kahveli Kedi Kapüşonlu",
+    description_en:
+      "Black hoodie with Çorap holding her latte. Two print options: a large print on the front or a small one on the chest — send a message on Etsy to say which you'd like.",
+    description_tr:
+      "Lattesini tutan Çorap baskılı siyah kapüşonlu. İki baskı seçeneği var: önde büyük baskı ya da göğüste küçük baskı — hangisini istediğini Etsy'de mesajla ilet.",
+    price: 1302.51,
+    currency: "TRY",
+    category: "hoodie",
+    tags: ["hoodie", "coffee", "cat"],
+    images: [
+      img(
+        "25cb6e/8717186739/il_fullxfull.8717186739_2gvj.jpg",
+        "Black hoodie with a large front print of a tabby and white cat holding a latte",
+        "Önünde latte tutan tekir-beyaz kedi büyük baskısı olan siyah kapüşonlu",
+      ),
+      img(
+        "7a57d7/8669320526/il_fullxfull.8669320526_75pk.jpg",
+        "Black hoodie with a small chest print of the same cat holding a latte",
+        "Göğsünde aynı latte tutan kedinin küçük baskısı olan siyah kapüşonlu",
+      ),
+    ],
+    etsyUrl: `${ETSY}/4594345918/cat-sweatshirt-graphic-print-of-cat`,
+    variants: [
+      { name_en: "Size", name_tr: "Beden", options: ["S", "M", "L", "XL"] },
+      {
+        name_en: "Print",
+        name_tr: "Baskı",
+        options: ["Large front", "Small chest"],
+      },
+    ],
+    featured: true,
+    isNew: false,
+    soldOut: false,
+  },
+  {
+    slug: "coffee-cat-tee",
+    title_en: "Coffee Cat T-Shirt",
+    title_tr: "Kahveli Kedi Tişört",
+    description_en:
+      "A white 100% cotton tee with a small print of Çorap holding her latte on the chest. Relaxed unisex fit, pre-shrunk, printed to order and shipped within 3–5 business days.",
+    description_tr:
+      "Göğsünde lattesini tutan küçük bir Çorap baskısı olan, %100 pamuklu beyaz tişört. Rahat unisex kalıp, çekmezlik işlemli; siparişe özel basılır ve 3–5 iş gününde kargolanır.",
+    price: 833.61,
+    currency: "TRY",
     category: "tshirt",
-    tags: ["coffee", "minimal", "gift"],
+    tags: ["t-shirt", "coffee", "cotton"],
     images: [
-      S(
-        "White T-shirt on a hanger with a small print of Çorap holding a latte on the chest",
-        "Askıda, göğsünde latte tutan küçük bir Çorap baskısı olan beyaz tişört",
-        "/products/caffeinated-tee.jpg",
-      ),
-      S(
-        "Close-up of the illustration: Çorap holding a latte with heart foam art",
-        "İllüstrasyonun yakını: kalpli köpüklü latte tutan Çorap",
-        "/products/caffeinated-art.png",
+      img(
+        "69428c/8660754492/il_fullxfull.8660754492_py7x.jpg",
+        "White T-shirt with a small chest print of a tabby and white cat holding a latte",
+        "Göğsünde latte tutan tekir-beyaz kedi küçük baskısı olan beyaz tişört",
       ),
     ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_APPAREL],
-    featured: true,
-    isNew: true,
-    soldOut: false,
-    placeholder: true,
-  },
-  {
-    slug: "caffeinated-hoodie",
-    title_en: "Caffeinated Çorap Hoodie",
-    title_tr: "Kafeinli Çorap Kapüşonlu",
-    description_en:
-      "Black hoodie, big Çorap, bigger coffee. For mornings when you and the cat are equally unwilling.",
-    description_tr:
-      "Siyah kapüşonlu, kocaman Çorap, daha kocaman kahve. Sen de kedi de kalkmak istemediğinde.",
-    price: 58,
-    currency: "USD",
-    category: "hoodie",
-    tags: ["coffee", "cozy", "gift"],
-    images: [
-      S(
-        "Black hoodie with a large center print of Çorap holding a latte",
-        "Ortasında latte tutan büyük bir Çorap baskısı olan siyah kapüşonlu",
-        "/products/caffeinated-hoodie.jpg",
-      ),
-      S(
-        "The Caffeinated illustration on a café background",
-        "Kafe arka planında Kafeinli illüstrasyonu",
-        "/products/caffeinated-art-cafe.png",
-      ),
-    ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_APPAREL],
+    etsyUrl: `${ETSY}/4593294377/white-t-shirt-cat-holding-coffee-cup`,
+    variants: [{ name_en: "Size", name_tr: "Beden", options: ["S", "M", "L", "XL"] }],
     featured: true,
     isNew: false,
     soldOut: false,
-    placeholder: true,
   },
   {
-    slug: "caffeinated-pocket-hoodie",
-    title_en: "Pocket Çorap Hoodie",
-    title_tr: "Cep Boy Çorap Kapüşonlu",
-    description_en: "The same latte thief, pocket-sized, sitting on your heart. Subtle. Mostly.",
-    description_tr: "Aynı latte hırsızı, cep boyutunda, tam kalbinin üstünde. Gayet sade. Sayılır.",
-    price: 54,
-    currency: "USD",
-    category: "hoodie",
-    tags: ["coffee", "minimal"],
-    images: [
-      S(
-        "Black hoodie with a small left-chest print of Çorap holding a latte",
-        "Sol göğsünde küçük bir latte tutan Çorap baskısı olan siyah kapüşonlu",
-        "/products/caffeinated-hoodie-pocket.jpg",
-      ),
-      S(
-        "Close-up of the illustration: Çorap holding a latte",
-        "İllüstrasyonun yakını: latte tutan Çorap",
-        "/products/caffeinated-art.png",
-      ),
-    ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_APPAREL],
-    featured: false,
-    isNew: true,
-    soldOut: false,
-    placeholder: true,
-  },
-  {
-    slug: "caffeinated-print",
-    title_en: "Caffeinated Art Print",
-    title_tr: "Kafeinli Sanat Baskısı",
+    slug: "caffeinated-canvas",
+    title_en: "Caffeinated — Canvas Print",
+    title_tr: "Caffeinated — Kanvas Tablo",
     description_en:
-      "Çorap behind the counter of her café. Hang it in your kitchen; she'll supervise the coffee.",
-    description_tr: "Kafesinin tezgâhında Çorap. Mutfağına as; kahveyi o denetleyecek.",
-    price: 24,
-    currency: "USD",
+      "Çorap behind the counter of her café, latte in paws, on a gallery-wrapped canvas. Museum-quality print on a 3.8 cm pine frame, matte finish, ready to hang.",
+    description_tr:
+      "Kafesinin tezgâhında, patilerinde lattesiyle Çorap; kasnağa gerilmiş kanvas üzerinde. 3,8 cm çam kasnak üzerine müze kalitesinde mat baskı, asmaya hazır.",
+    price: 2083.5,
+    currency: "TRY",
     category: "print",
-    tags: ["coffee", "wall art", "kitchen"],
+    tags: ["canvas", "wall art", "coffee"],
     images: [
-      S(
-        "Illustration of Çorap holding a latte in front of an espresso bar, with the word Caffeinated",
-        "Espresso barının önünde latte tutan Çorap illüstrasyonu ve Caffeinated yazısı",
-        "/products/caffeinated-art-cafe.png",
+      img(
+        "f6b8da/8708277699/il_fullxfull.8708277699_2mas.jpg",
+        "Canvas print of Çorap holding a latte with the word Caffeinated, hanging in a café",
+        "Bir kafede asılı, Caffeinated yazılı ve latte tutan Çorap kanvas tablosu",
+      ),
+      img(
+        "3a89de/8708277165/il_fullxfull.8708277165_f94t.jpg",
+        "Close-up of the Caffeinated canvas print",
+        "Caffeinated kanvas tablonun yakın çekimi",
       ),
     ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_PRINT],
+    etsyUrl: `${ETSY}/4593258042/coffee-served-gallery-canvas-print`,
     featured: true,
     isNew: false,
     soldOut: false,
-    placeholder: true,
   },
   {
-    slug: "the-house-cat-badge-print",
-    title_en: "The House Cat — Est. 2021 Print",
-    title_tr: "The House Cat — Est. 2021 Baskı",
+    slug: "the-house-cat-canvas",
+    title_en: "The House Cat — Vintage Canvas",
+    title_tr: "The House Cat — Vintage Kanvas",
     description_en:
-      "The official seal of the household. Çorap on her rug, in her armchair-filled kingdom, since 2021.",
+      "Navy halftone portrait of Çorap under varsity letters reading The House Cat, Est. 2021. Printed on canvas and ready to hang.",
     description_tr:
-      "Evin resmî mührü. 2021'den beri halısında, koltuklarla dolu krallığında Çorap.",
-    price: 22,
-    currency: "USD",
+      "Kolej harfleriyle The House Cat, Est. 2021 yazısının altında lacivert raster Çorap portresi. Kanvas üzerine basılı, asmaya hazır.",
+    price: 2083.5,
+    currency: "TRY",
     category: "print",
-    tags: ["badge", "cozy", "wall art"],
+    tags: ["canvas", "wall art", "retro"],
     images: [
-      S(
-        "Round badge illustration reading The House Cat, Est. 2021, with Çorap sitting in a cozy living room",
-        "The House Cat, Est. 2021 yazan yuvarlak rozet illüstrasyonu; sıcak bir salonda oturan Çorap",
-        "/products/house-cat-badge.jpg",
+      img(
+        "fd3d4b/8646727671/il_fullxfull.8646727671_8h2x.jpg",
+        "Navy halftone print of Çorap's face under arched letters reading The House Cat",
+        "Kavisli The House Cat yazısının altında Çorap'ın yüzünün lacivert raster baskısı",
+      ),
+      img(
+        "137a83/8598886244/il_fullxfull.8598886244_9itd.jpg",
+        "The House Cat canvas hanging above a wooden sideboard",
+        "Ahşap bir konsolun üstünde asılı The House Cat kanvası",
+      ),
+      img(
+        "23a525/8598886548/il_fullxfull.8598886548_m8ku.jpg",
+        "The House Cat canvas hanging above a bed",
+        "Bir yatağın üstünde asılı The House Cat kanvası",
       ),
     ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_PRINT],
-    featured: true,
-    isNew: false,
-    soldOut: false,
-    placeholder: true,
-  },
-  {
-    slug: "the-house-cat-green-room-print",
-    title_en: "The House Cat — Green Room Print",
-    title_tr: "The House Cat — Yeşil Oda Baskısı",
-    description_en:
-      "Çorap in the green reading room: red velvet chair, lamp on, books stacked. Very serious. Very cat.",
-    description_tr:
-      "Yeşil okuma odasında Çorap: kırmızı kadife koltuk, lamba açık, kitaplar üst üste. Çok ciddi. Çok kedi.",
-    price: 22,
-    currency: "USD",
-    category: "print",
-    tags: ["vintage", "wall art"],
-    images: [
-      S(
-        "Round illustration of Çorap sitting on a patterned rug in a green room with a red armchair and lamp",
-        "Kırmızı koltuk ve lambalı yeşil bir odada desenli halıda oturan Çorap'ın yuvarlak illüstrasyonu",
-        "/products/house-cat-green-room.jpg",
-      ),
-    ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_PRINT],
+    etsyUrl: `${ETSY}/4585313569/cat-canvas-wall-art-vintage-feline`,
     featured: false,
     isNew: false,
     soldOut: false,
-    placeholder: true,
-  },
-  {
-    slug: "the-house-cat-halftone-print",
-    title_en: "The House Cat — Varsity Halftone",
-    title_tr: "The House Cat — Varsity Raster",
-    description_en:
-      "Navy halftone, varsity letters, one very close-up cat. Looks great on cream walls and on tote bags.",
-    description_tr:
-      "Lacivert raster, kolej harfleri, burnunu dayamış bir kedi. Krem duvarlarda da bez çantalarda da harika.",
-    price: 26,
-    currency: "USD",
-    category: "print",
-    tags: ["retro", "halftone", "wall art"],
-    images: [
-      S(
-        "Navy halftone print of Çorap's face pressed close to the camera under arched letters reading The House Cat",
-        "Kavisli The House Cat yazısının altında, kameraya yaklaşmış Çorap yüzünün lacivert raster baskısı",
-        "/products/house-cat-halftone.jpg",
-      ),
-    ],
-    etsyUrl: site.etsyShopUrl,
-    variants: [SIZES_PRINT],
-    featured: false,
-    isNew: false,
-    soldOut: true,
-    placeholder: true,
-  },
-  {
-    slug: "corap-sitting-sticker",
-    title_en: "Sitting Çorap Sticker",
-    title_tr: "Oturan Çorap Sticker",
-    description_en:
-      "Çorap, sitting politely, socks on. Waterproof vinyl for laptops, bottles and anything she hasn't knocked off a table yet.",
-    description_tr:
-      "Kibarca oturan, çorapları ayağında Çorap. Laptop, matara ve henüz masadan düşürmediği her şey için suya dayanıklı vinil.",
-    price: 4.5,
-    currency: "USD",
-    category: "sticker",
-    tags: ["sticker", "small gift"],
-    images: [
-      S(
-        "Cartoon illustration of Çorap sitting and looking up, brown tabby with white chest and white paws",
-        "Yukarı bakarak oturan Çorap'ın çizimi: beyaz göğüslü, beyaz patili kahverengi tekir",
-        "/products/corap-cartoon-sit.jpg",
-      ),
-      S(
-        "Painted portrait of Çorap sitting, showing her white socks",
-        "Beyaz çoraplarını gösteren, oturan Çorap'ın boyalı portresi",
-        "/products/corap-painted-sit.jpg",
-      ),
-    ],
-    etsyUrl: site.etsyShopUrl,
-    featured: false,
-    isNew: true,
-    soldOut: false,
-    placeholder: true,
   },
 ];
